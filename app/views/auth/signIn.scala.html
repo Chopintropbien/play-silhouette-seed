@@ -5,7 +5,10 @@
 @import controllers.AssetsFinder
 @import com.mohiva.play.silhouette.impl.providers.SocialProviderRegistry
 @import forms.auth.SignInForm.Data
-@import b3.inline.fieldConstructor
+@import views.html.b3
+@import views.html.b3.inline.fieldConstructor
+@import views.html.helper
+@import views.html.main
 
 @(signInForm: Form[Data], socialProviders: SocialProviderRegistry)(implicit request: RequestHeader, messages: Messages, webJarsUtil: WebJarsUtil, assets: AssetsFinder)
 

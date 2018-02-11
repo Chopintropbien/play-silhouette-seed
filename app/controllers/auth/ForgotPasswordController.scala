@@ -46,7 +46,7 @@ class ForgotPasswordController @Inject() (
    * @return The result to display.
    */
   def view = silhouette.UnsecuredAction.async { implicit request: Request[AnyContent] =>
-    Future.successful(Ok(views.html.forgotPassword(ForgotPasswordForm.form)))
+    Future.successful(Ok(views.html.auth.forgotPassword(ForgotPasswordForm.form)))
   }
 
   /**
@@ -59,7 +59,7 @@ class ForgotPasswordController @Inject() (
    */
   def submit = silhouette.UnsecuredAction.async { implicit request: Request[AnyContent] =>
     ForgotPasswordForm.form.bindFromRequest.fold(
-      form => Future.successful(BadRequest(views.html.forgotPassword(form))),
+      form => Future.successful(BadRequest(views.html.auth.forgotPassword(form))),
       email => {
         val loginInfo = LoginInfo(CredentialsProvider.ID, email)
         val result = Redirect(auth.routes.SignInController.view()).flashing("info" -> Messages("reset.email.sent"))
