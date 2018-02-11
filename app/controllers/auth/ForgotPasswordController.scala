@@ -1,9 +1,10 @@
-package controllers
+package controllers.auth
 
 import javax.inject.Inject
 
 import com.mohiva.play.silhouette.api._
 import com.mohiva.play.silhouette.impl.providers.CredentialsProvider
+import controllers.{ AssetsFinder, auth }
 import forms.ForgotPasswordForm
 import models.services.{ AuthTokenService, UserService }
 import org.webjars.play.WebJarsUtil
@@ -61,11 +62,11 @@ class ForgotPasswordController @Inject() (
       form => Future.successful(BadRequest(views.html.forgotPassword(form))),
       email => {
         val loginInfo = LoginInfo(CredentialsProvider.ID, email)
-        val result = Redirect(routes.SignInController.view()).flashing("info" -> Messages("reset.email.sent"))
+        val result = Redirect(auth.routes.SignInController.view()).flashing("info" -> Messages("reset.email.sent"))
         userService.retrieve(loginInfo).flatMap {
           case Some(user) if user.email.isDefined =>
             authTokenService.create(user.userID).map { authToken =>
-              val url = routes.ResetPasswordController.view(authToken.id).absoluteURL()
+              val url = auth.routes.ResetPasswordController.view(authToken.id).absoluteURL()
 
               mailerClient.send(Email(
                 subject = Messages("email.reset.password.subject"),

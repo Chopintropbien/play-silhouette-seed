@@ -1,4 +1,4 @@
-package controllers
+package controllers.auth
 
 import javax.inject.Inject
 
@@ -8,6 +8,7 @@ import com.mohiva.play.silhouette.api.exceptions.ProviderException
 import com.mohiva.play.silhouette.api.repositories.AuthInfoRepository
 import com.mohiva.play.silhouette.api.util.{ Credentials, PasswordHasherRegistry, PasswordInfo }
 import com.mohiva.play.silhouette.impl.providers.CredentialsProvider
+import controllers.{ AssetsFinder, auth }
 import forms.ChangePasswordForm
 import org.webjars.play.WebJarsUtil
 import play.api.i18n.{ I18nSupport, Messages }
@@ -66,11 +67,11 @@ class ChangePasswordController @Inject() (
           credentialsProvider.authenticate(credentials).flatMap { loginInfo =>
             val passwordInfo = passwordHasherRegistry.current.hash(newPassword)
             authInfoRepository.update[PasswordInfo](loginInfo, passwordInfo).map { _ =>
-              Redirect(routes.ChangePasswordController.view()).flashing("success" -> Messages("password.changed"))
+              Redirect(auth.routes.ChangePasswordController.view()).flashing("success" -> Messages("password.changed"))
             }
           }.recover {
             case _: ProviderException =>
-              Redirect(routes.ChangePasswordController.view()).flashing("error" -> Messages("current.password.invalid"))
+              Redirect(auth.routes.ChangePasswordController.view()).flashing("error" -> Messages("current.password.invalid"))
           }
         }
       )

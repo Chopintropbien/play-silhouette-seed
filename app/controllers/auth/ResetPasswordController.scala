@@ -1,4 +1,4 @@
-package controllers
+package controllers.auth
 
 import java.util.UUID
 import javax.inject.Inject
@@ -7,6 +7,7 @@ import com.mohiva.play.silhouette.api._
 import com.mohiva.play.silhouette.api.repositories.AuthInfoRepository
 import com.mohiva.play.silhouette.api.util.{ PasswordHasherRegistry, PasswordInfo }
 import com.mohiva.play.silhouette.impl.providers.CredentialsProvider
+import controllers.{ AssetsFinder, auth }
 import forms.ResetPasswordForm
 import models.services.{ AuthTokenService, UserService }
 import org.webjars.play.WebJarsUtil
@@ -52,7 +53,7 @@ class ResetPasswordController @Inject() (
   def view(token: UUID) = silhouette.UnsecuredAction.async { implicit request: Request[AnyContent] =>
     authTokenService.validate(token).map {
       case Some(_) => Ok(views.html.resetPassword(ResetPasswordForm.form, token))
-      case None => Redirect(routes.SignInController.view()).flashing("error" -> Messages("invalid.reset.link"))
+      case None => Redirect(auth.routes.SignInController.view()).flashing("error" -> Messages("invalid.reset.link"))
     }
   }
 
@@ -71,12 +72,12 @@ class ResetPasswordController @Inject() (
             case Some(user) if user.loginInfo.providerID == CredentialsProvider.ID =>
               val passwordInfo = passwordHasherRegistry.current.hash(password)
               authInfoRepository.update[PasswordInfo](user.loginInfo, passwordInfo).map { _ =>
-                Redirect(routes.SignInController.view()).flashing("success" -> Messages("password.reset"))
+                Redirect(auth.routes.SignInController.view()).flashing("success" -> Messages("password.reset"))
               }
-            case _ => Future.successful(Redirect(routes.SignInController.view()).flashing("error" -> Messages("invalid.reset.link")))
+            case _ => Future.successful(Redirect(auth.routes.SignInController.view()).flashing("error" -> Messages("invalid.reset.link")))
           }
         )
-      case None => Future.successful(Redirect(routes.SignInController.view()).flashing("error" -> Messages("invalid.reset.link")))
+      case None => Future.successful(Redirect(auth.routes.SignInController.view()).flashing("error" -> Messages("invalid.reset.link")))
     }
   }
 }
