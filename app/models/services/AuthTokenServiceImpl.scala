@@ -52,9 +52,9 @@ class AuthTokenServiceImpl @Inject() (
    *
    * @return The list of deleted tokens.
    */
-  def clean = authTokenDAO.findExpired(clock.now.withZone(DateTimeZone.UTC)).flatMap { tokens =>
-    Future.sequence(tokens.map { token =>
-      authTokenDAO.remove(token.id).map(_ => token)
-    })
-  }
+  //  def clean = authTokenDAO.findExpired(clock.now.withZone(DateTimeZone.UTC)).flatMap { tokens =>
+  //    Future.sequence(tokens.map { token =>
+  //      authTokenDAO.remove(token.id).map(_ => token)
+  //    })
+  //  }
 }

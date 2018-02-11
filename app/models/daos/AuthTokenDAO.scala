@@ -25,7 +25,7 @@ trait AuthTokenDAO {
    *
    * @param dateTime The current date time.
    */
-  def findExpired(dateTime: DateTime): Future[Seq[AuthToken]]
+  //  def findExpired(dateTime: DateTime): Future[Seq[AuthToken]]
 
   /**
    * Saves a token.

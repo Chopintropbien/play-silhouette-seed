@@ -4,13 +4,17 @@ import java.util.UUID
 
 import com.mohiva.play.silhouette.api.LoginInfo
 import models.User
+import models.tables.{ DbLoginInfo, LoginInfoTable }
 
 import scala.concurrent.Future
+import slick.lifted.Query
 
 /**
  * Give access to the user object.
  */
 trait UserDAO {
+
+  def loginInfoQuery(loginInfo: LoginInfo): Query[LoginInfoTable, DbLoginInfo, Seq]
 
   /**
    * Finds a user by its login info.
