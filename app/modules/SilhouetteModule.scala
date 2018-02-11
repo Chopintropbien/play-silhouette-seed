@@ -24,7 +24,8 @@ import com.mohiva.play.silhouette.password.{ BCryptPasswordHasher, BCryptSha256P
 import com.mohiva.play.silhouette.persistence.daos.{ DelegableAuthInfoDAO, InMemoryAuthInfoDAO }
 import com.mohiva.play.silhouette.persistence.repositories.DelegableAuthInfoRepository
 import models.daos._
-import models.services.{ UserService, UserServiceImpl }
+import models.daos.auth.{ UserDAO, UserDAOImpl }
+import models.services.auth.{ UserService, UserServiceImpl }
 import net.ceedubs.ficus.Ficus._
 import net.ceedubs.ficus.readers.ArbitraryTypeReader._
 import net.codingwell.scalaguice.ScalaModule

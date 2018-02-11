@@ -1,12 +1,14 @@
-package models.daos
+package models.daos.auth
 
 import java.util.UUID
 import javax.inject.Inject
 
 import com.mohiva.play.silhouette.api.LoginInfo
 import models.User
-import models.daos.UserDAOImpl._
+
+import models.daos.auth.UserDAOImpl._
 import models.tables._
+
 import play.api.db.slick.DatabaseConfigProvider
 import slick.basic.DatabaseConfig
 import slick.jdbc.JdbcProfile
@@ -14,8 +16,12 @@ import slick.jdbc.JdbcBackend
 import slick.lifted.TableQuery
 
 import scala.concurrent.ExecutionContext.Implicits.global
-import scala.collection.mutable
+
 import scala.concurrent.Future
+import scala.concurrent.ExecutionContext.Implicits.global
+import play.api.db.slick.DatabaseConfigProvider
+import models.daos.auth.UserDAOImpl._
+import models.tables.auth._
 
 /**
  * Give access to the user object.

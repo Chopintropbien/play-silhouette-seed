@@ -1,6 +1,5 @@
-package models.tables
+package models.tables.auth
 
-import org.joda.time._
 import slick.jdbc.PostgresProfile.api._
 import slick.lifted.ProvenShape
 

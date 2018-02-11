@@ -1,4 +1,4 @@
-package models.tables
+package models.tables.auth
 
 import slick.jdbc.PostgresProfile.api._
 import slick.lifted.ProvenShape

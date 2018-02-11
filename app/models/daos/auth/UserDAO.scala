@@ -1,13 +1,12 @@
-package models.daos
+package models.daos.auth
 
 import java.util.UUID
 
 import com.mohiva.play.silhouette.api.LoginInfo
 import models.User
-import models.tables.{ DbLoginInfo, LoginInfoTable }
-
-import scala.concurrent.Future
+import models.tables.auth.{ DbLoginInfo, LoginInfoTable }
 import slick.lifted.Query
+import scala.concurrent.Future
 
 /**
  * Give access to the user object.

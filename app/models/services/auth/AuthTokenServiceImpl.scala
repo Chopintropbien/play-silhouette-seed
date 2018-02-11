@@ -1,14 +1,14 @@
-package models.services
+package models.services.auth
 
 import java.util.UUID
 import javax.inject.Inject
 
 import com.mohiva.play.silhouette.api.util.Clock
 import models.AuthToken
-import models.daos.AuthTokenDAO
+import models.daos.auth.AuthTokenDAO
 import org.joda.time.DateTimeZone
 
-import scala.concurrent.{ ExecutionContext, Future }
+import scala.concurrent.ExecutionContext
 import scala.concurrent.duration._
 import scala.language.postfixOps
 

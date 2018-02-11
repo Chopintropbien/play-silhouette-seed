@@ -3,7 +3,7 @@
 @import play.api.mvc.RequestHeader
 @import org.webjars.play.WebJarsUtil
 @import controllers.AssetsFinder
-@import forms.SignUpForm.Data
+@import forms.auth.SignUpForm.Data
 @import b3.inline.fieldConstructor
 
 @(signUpForm: Form[Data])(implicit request: RequestHeader, messages: Messages, webJarsUtil: WebJarsUtil, assets: AssetsFinder)

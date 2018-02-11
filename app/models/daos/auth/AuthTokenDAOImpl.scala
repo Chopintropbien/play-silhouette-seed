@@ -1,12 +1,14 @@
-package models.daos
+package models.daos.auth
 
 import java.util.UUID
 import javax.inject.Inject
 
 import models.AuthToken
-import models.daos.AuthTokenDAOImpl._
-import models.tables.{ AuthTokenTable, DbAuthToken }
+import models.daos.auth.AuthTokenDAOImpl._
+import models.tables.auth.DbAuthToken
+import models.tables.auth.{ AuthTokenTable, DbAuthToken }
 import org.joda.time.DateTime
+
 import play.api.db.slick.DatabaseConfigProvider
 import slick.basic.DatabaseConfig
 import slick.jdbc.JdbcProfile
@@ -14,7 +16,10 @@ import slick.jdbc.JdbcBackend
 import slick.lifted.TableQuery
 
 import scala.concurrent.ExecutionContext.Implicits.global
+
 import scala.concurrent.Future
+import scala.concurrent.ExecutionContext.Implicits.global
+import play.api.db.slick.DatabaseConfigProvider
 
 /**
  * Give access to the [[AuthToken]] object.

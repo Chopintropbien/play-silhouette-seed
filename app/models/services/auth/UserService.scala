@@ -1,4 +1,4 @@
-package models.services
+package models.services.auth
 
 import java.util.UUID
 

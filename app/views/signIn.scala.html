@@ -4,7 +4,7 @@
 @import org.webjars.play.WebJarsUtil
 @import controllers.AssetsFinder
 @import com.mohiva.play.silhouette.impl.providers.SocialProviderRegistry
-@import forms.SignInForm.Data
+@import forms.auth.SignInForm.Data
 @import b3.inline.fieldConstructor
 
 @(signInForm: Form[Data], socialProviders: SocialProviderRegistry)(implicit request: RequestHeader, messages: Messages, webJarsUtil: WebJarsUtil, assets: AssetsFinder)

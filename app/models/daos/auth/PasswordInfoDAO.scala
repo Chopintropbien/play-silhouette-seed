@@ -1,12 +1,13 @@
-package models.daos
+package models.daos.auth
 
 import javax.inject.Inject
 
 import com.mohiva.play.silhouette.api.LoginInfo
 import com.mohiva.play.silhouette.api.util.PasswordInfo
 import com.mohiva.play.silhouette.persistence.daos.DelegableAuthInfoDAO
-import models.daos.PasswordInfoDAO._
-import models.tables.{ DbPasswordInfo, PasswordInfoTable }
+import models.tables.auth.PasswordInfoTable
+
+import models.daos.auth.UserDAOImpl._
 import play.api.db.slick.DatabaseConfigProvider
 import slick.basic.DatabaseConfig
 import slick.jdbc.JdbcProfile
@@ -14,6 +15,9 @@ import slick.jdbc.JdbcBackend
 import slick.lifted.TableQuery
 
 import scala.concurrent.ExecutionContext.Implicits.global
+import models.daos.auth.PasswordInfoDAO._
+import models.tables.auth.{ DbPasswordInfo, PasswordInfoTable }
+
 import scala.concurrent.Future
 
 class PasswordInfoDAO @Inject() (

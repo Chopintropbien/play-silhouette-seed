@@ -1,8 +1,8 @@
 package modules
 
 import com.google.inject.AbstractModule
-import models.daos.{ AuthTokenDAO, AuthTokenDAOImpl }
-import models.services.{ AuthTokenService, AuthTokenServiceImpl }
+import models.daos.auth.{ AuthTokenDAO, AuthTokenDAOImpl }
+import models.services.auth.{ AuthTokenService, AuthTokenServiceImpl }
 import net.codingwell.scalaguice.ScalaModule
 
 /**
